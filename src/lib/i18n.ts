@@ -59,7 +59,9 @@ const translations = {
     aboutItem2: 'Quality sessions make up 20–25% of total running time',
     aboutItem3: 'Keep threshold sessions below LT2',
     aboutItem4: 'Keep easy runs very easy (max 65% of MAS)',
-    aboutItem5: 'Keep rest periods short to maintain lactate state. Rest can be standing, walking, or easy jogging.',
+    restTitle: 'About resting',
+    restItem1: 'Keep rest periods short to maintain lactate state.',
+    restItem2: 'Rest can be standing, walking, or easy jogging.',
     // Norwegian Singles — errors
     errorTooFast: 'The time seems unrealistically fast for the given distance. Double-check your distance and time.',
     hintEmpty: 'Enter a distance and race time above to calculate VDOT and training zones.',
@@ -133,7 +135,9 @@ const translations = {
     aboutItem2: 'Kvalitetspass motsvarar 20–25 procent av total löptid',
     aboutItem3: 'Håll tröskelpassen under LT2',
     aboutItem4: 'Låt de lätta passen vara väldigt lätta (max 65 % av MAS)',
-    aboutItem5: 'Håll viloperioderna korta för att bibehålla laktatnivån. Vila kan vara stående, gående eller lätt joggning.',
+    restTitle: 'Om vila',
+    restItem1: 'Håll viloperioderna korta för att bibehålla laktatnivån.',
+    restItem2: 'Vila kan vara stående, gående eller lätt joggning.',
     // Norwegian Singles — errors
     errorTooFast: 'Tiden verkar orimligt snabb för den angivna distansen. Dubbelkolla att distans och tid stämmer.',
     hintEmpty: 'Ange distans och lopptid ovan för att beräkna VDOT och träningszoner.',

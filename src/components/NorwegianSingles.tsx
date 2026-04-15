@@ -158,7 +158,16 @@ function NorwegianSingles() {
             />
           </div>
 
-          {/* Info box */}
+          {/* Rest info box */}
+          <div style={styles.infoBox}>
+            <h4 style={styles.infoTitle}>{t('restTitle')}</h4>
+            <ul style={styles.infoList}>
+              <li>{t('restItem1')}</li>
+              <li>{t('restItem2')}</li>
+            </ul>
+          </div>
+
+          {/* About Norwegian Singles info box */}
           <div style={styles.infoBox}>
             <h4 style={styles.infoTitle}>{t('aboutTitle')}</h4>
             <ul style={styles.infoList}>
@@ -166,7 +175,6 @@ function NorwegianSingles() {
               <li>{t('aboutItem2')}</li>
               <li>{t('aboutItem3')}</li>
               <li>{t('aboutItem4')}</li>
-              <li>{t('aboutItem5')}</li>
             </ul>
           </div>
         </>
