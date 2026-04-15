@@ -165,6 +165,10 @@ interface LanguageContextValue {
   lang: Lang
   setLang: (lang: Lang) => void
   t: (key: TranslationKey) => string
+  /** Format a number with locale decimal separator (comma in Swedish). */
+  fmtNum: (value: number, decimals?: number) => string
+  /** Format an integer with locale thousand separator. */
+  fmtDist: (value: number) => string
 }
 
 const LanguageContext = createContext<LanguageContextValue | null>(null)
@@ -187,7 +191,19 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     [lang],
   )
 
-  return createElement(LanguageContext.Provider, { value: { lang, setLang, t } }, children)
+  const fmtNum = useCallback(
+    (value: number, decimals = 1) =>
+      value.toFixed(decimals).replace('.', lang === 'sv' ? ',' : '.'),
+    [lang],
+  )
+
+  const fmtDist = useCallback(
+    (value: number) =>
+      new Intl.NumberFormat(lang === 'sv' ? 'sv-SE' : 'en-US').format(Math.round(value)),
+    [lang],
+  )
+
+  return createElement(LanguageContext.Provider, { value: { lang, setLang, t, fmtNum, fmtDist } }, children)
 }
 
 export function useLanguage(): LanguageContextValue {

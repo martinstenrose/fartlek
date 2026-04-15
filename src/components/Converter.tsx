@@ -95,13 +95,13 @@ function RiegelCard({ color }: { color: string }) {
 }
 
 function MinKmToKmhCard({ color }: { color: string }) {
-  const { t } = useLanguage()
+  const { t, fmtNum } = useLanguage()
   const [paceStr, setPaceStr] = useState('')
 
   const result = useMemo(() => {
     const pace = parseTime(paceStr)
     if (isNaN(pace) || pace <= 0) return null
-    return paceToSpeed(pace).toFixed(2)
+    return paceToSpeed(pace)
   }, [paceStr])
 
   return (
@@ -116,7 +116,7 @@ function MinKmToKmhCard({ color }: { color: string }) {
       {result && (
         <div style={styles.result}>
           <span style={styles.resultLabel}>{t('result')}</span>
-          <span className="mono" style={styles.resultValue}>{result} {t('kmh')}</span>
+          <span className="mono" style={styles.resultValue}>{fmtNum(result, 2)} {t('kmh')}</span>
         </div>
       )}
     </CardWrapper>
@@ -236,7 +236,7 @@ function CalcTimeCard({ color }: { color: string }) {
 }
 
 function CalcDistanceCard({ color }: { color: string }) {
-  const { t } = useLanguage()
+  const { t, fmtNum } = useLanguage()
   const [timeStr, setTimeStr] = useState('')
   const [paceStr, setPaceStr] = useState('')
 
@@ -244,7 +244,7 @@ function CalcDistanceCard({ color }: { color: string }) {
     const time = parseTime(timeStr)
     const pace = parseTime(paceStr)
     if (isNaN(time) || isNaN(pace) || time <= 0 || pace <= 0) return null
-    return (time / pace).toFixed(2)
+    return time / pace
   }, [timeStr, paceStr])
 
   return (
@@ -268,7 +268,7 @@ function CalcDistanceCard({ color }: { color: string }) {
       {result && (
         <div style={styles.result}>
           <span style={styles.resultLabel}>{t('result')}</span>
-          <span className="mono" style={styles.resultValue}>{result} km</span>
+          <span className="mono" style={styles.resultValue}>{fmtNum(result, 2)} km</span>
         </div>
       )}
     </CardWrapper>

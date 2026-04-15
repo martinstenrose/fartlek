@@ -9,15 +9,19 @@ const DISTANCES = [
   { labelKey: 'presetMarathon' as const, meters: 42195 },
 ]
 
+function stripDistSeparators(v: string) {
+  return v.replace(/[\s,]/g, '')
+}
+
 function NorwegianSingles() {
-  const { t } = useLanguage()
-  const [distanceStr, setDistanceStr] = useState('')
+  const { t, fmtNum, fmtDist } = useLanguage()
+  const [distanceRaw, setDistanceRaw] = useState('')
   const [timeStr, setTimeStr] = useState('')
 
   const result = useMemo(() => {
-    const distance = parseFloat(distanceStr)
+    const distance = parseFloat(distanceRaw)
     const timeMin = parseTime(timeStr)
-    if (!distance || isNaN(timeMin) || distance <= 0 || timeMin <= 0) return null
+    if (!distanceRaw || isNaN(distance) || isNaN(timeMin) || distance <= 0 || timeMin <= 0) return null
 
     const vdot = calcVDOT(distance, timeMin)
     if (vdot > 85) return { error: 'tooFast' as const }
@@ -44,9 +48,9 @@ function NorwegianSingles() {
     const pace30k = formatPace(t30k / 30)
 
     return { vdot, mas, easyPace, zones, pace15k, paceHM, pace30k }
-  }, [distanceStr, timeStr])
+  }, [distanceRaw, timeStr])
 
-  const hasInput = distanceStr !== '' || timeStr !== ''
+  const hasInput = distanceRaw !== '' || timeStr !== ''
 
   return (
     <div>
@@ -57,16 +61,16 @@ function NorwegianSingles() {
           type="text"
           inputMode="numeric"
           style={styles.input}
-          value={distanceStr}
-          onChange={e => setDistanceStr(e.target.value)}
-          placeholder="5000"
+          value={distanceRaw ? fmtDist(parseFloat(distanceRaw)) : ''}
+          onChange={e => setDistanceRaw(stripDistSeparators(e.target.value))}
+          placeholder={fmtDist(5000)}
         />
         <div style={styles.quickButtons}>
           {DISTANCES.map(d => (
             <button
               key={d.labelKey}
               style={styles.quickBtn}
-              onClick={() => setDistanceStr(String(d.meters))}
+              onClick={() => setDistanceRaw(String(d.meters))}
             >
               {t(d.labelKey)}
             </button>
@@ -99,8 +103,8 @@ function NorwegianSingles() {
         <>
           {/* Key metrics */}
           <div style={styles.metricsGrid}>
-            <MetricCard label={t('vdot')} value={result.vdot.toFixed(1)} />
-            <MetricCard label={`${t('mas')} (${t('kmh')})`} value={result.mas.toFixed(1)} />
+            <MetricCard label={t('vdot')} value={fmtNum(result.vdot, 1)} />
+            <MetricCard label={`${t('mas')} (${t('kmh')})`} value={fmtNum(result.mas, 1)} />
             <MetricCard label={`${t('easyPace')} (${t('minKm')})`} value={formatPace(result.easyPace)} />
           </div>
 
