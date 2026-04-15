@@ -1,0 +1,7 @@
+services:
+  fartlek:
+    image: ghcr.io/martinstenrose/fartlek:latest
+    restart: unless-stopped
+    # labels:
+    #   caddy: fartlek.stenrose.se
+    #   caddy.reverse_proxy: "{{upstreams 80}}"
