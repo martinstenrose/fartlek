@@ -16,7 +16,7 @@ const translations = {
     timePlaceholder: 'mm:ss or hh:mm:ss',
     preset5k: '5K',
     preset10k: '10K',
-    presetHM: 'HM',
+    presetHM: 'Half Marathon',
     presetMarathon: 'Marathon',
     // Norwegian Singles — metrics
     vdot: 'VDOT',
