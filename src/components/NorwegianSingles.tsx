@@ -166,6 +166,7 @@ function NorwegianSingles() {
               <li>{t('aboutItem2')}</li>
               <li>{t('aboutItem3')}</li>
               <li>{t('aboutItem4')}</li>
+              <li>{t('aboutItem5')}</li>
             </ul>
           </div>
         </>
