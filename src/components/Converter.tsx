@@ -2,17 +2,19 @@ import { useState, useMemo } from 'react'
 import { useLanguage } from '../lib/i18n'
 import { parseTime, formatTime, formatPace, riegel, speedToPace, paceToSpeed } from '../lib/formulas'
 
-const RIEGEL_DISTANCES = [
-  { label: '400m', meters: 400 },
-  { label: '800m', meters: 800 },
-  { label: '1000m', meters: 1000 },
-  { label: '3000m', meters: 3000 },
-  { label: '5K', meters: 5000 },
-  { label: '10K', meters: 10000 },
-  { label: 'HM', meters: 21097.5 },
-  { label: '30K', meters: 30000 },
-  { label: 'Marathon', meters: 42195 },
-]
+const RIEGEL_DISTANCES = [400, 800, 1000, 3000, 5000, 10000, 21097.5, 30000, 42195]
+
+function stripDistSeparators(v: string) {
+  return v.replace(/[\s,]/g, '')
+}
+
+function riegelLabel(meters: number, lang: 'en' | 'sv'): string {
+  if (meters === 21097.5) return lang === 'sv' ? 'Halvmaraton' : 'Half Marathon'
+  if (meters === 42195) return lang === 'sv' ? 'Maraton' : 'Marathon'
+  if (meters < 1000) return lang === 'sv' ? `${meters} m` : `${meters}m`
+  const km = meters / 1000
+  return lang === 'sv' ? `${km} km` : `${km}K`
+}
 
 const CARD_COLORS = ['#f97316', '#3b82f6', '#22c55e', '#a855f7', '#f43f5e', '#f59e0b']
 
@@ -39,21 +41,21 @@ function CardWrapper({ title, color, children }: { title: string; color: string;
 }
 
 function RiegelCard({ color }: { color: string }) {
-  const { t } = useLanguage()
-  const [distStr, setDistStr] = useState('')
+  const { t, lang, fmtDist } = useLanguage()
+  const [distanceRaw, setDistanceRaw] = useState('')
   const [timeStr, setTimeStr] = useState('')
 
   const equivalents = useMemo(() => {
-    const dist = parseFloat(distStr)
+    const dist = parseFloat(distanceRaw)
     const time = parseTime(timeStr)
     if (!dist || isNaN(time) || dist <= 0 || time <= 0) return null
 
-    return RIEGEL_DISTANCES.map(d => {
-      const eqTime = riegel(time, dist, d.meters)
-      const pace = eqTime / (d.meters / 1000)
-      return { label: d.label, time: formatTime(eqTime), pace: formatPace(pace) }
+    return RIEGEL_DISTANCES.map(meters => {
+      const eqTime = riegel(time, dist, meters)
+      const pace = eqTime / (meters / 1000)
+      return { meters, label: riegelLabel(meters, lang), time: formatTime(eqTime), pace: formatPace(pace) }
     })
-  }, [distStr, timeStr])
+  }, [distanceRaw, timeStr, lang])
 
   return (
     <CardWrapper title={t('distanceConverter')} color={color}>
@@ -62,8 +64,8 @@ function RiegelCard({ color }: { color: string }) {
           type="text"
           inputMode="numeric"
           style={styles.input}
-          value={distStr}
-          onChange={e => setDistStr(e.target.value)}
+          value={distanceRaw ? fmtDist(parseFloat(distanceRaw)) : ''}
+          onChange={e => setDistanceRaw(stripDistSeparators(e.target.value))}
           placeholder={t('converterDistPlaceholder')}
         />
         <input
@@ -82,7 +84,7 @@ function RiegelCard({ color }: { color: string }) {
             <span style={{ flex: 1, textAlign: 'right' }}>{t('pace')}</span>
           </div>
           {equivalents.map(eq => (
-            <div key={eq.label} style={styles.tableRow}>
+            <div key={eq.meters} style={styles.tableRow}>
               <span style={{ flex: 1 }}>{eq.label}</span>
               <span className="mono" style={{ flex: 1, textAlign: 'right' }}>{eq.time}</span>
               <span className="mono" style={{ flex: 1, textAlign: 'right' }}>{eq.pace}</span>

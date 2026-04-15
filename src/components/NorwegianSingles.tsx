@@ -63,7 +63,7 @@ function NorwegianSingles() {
           style={styles.input}
           value={distanceRaw ? fmtDist(parseFloat(distanceRaw)) : ''}
           onChange={e => setDistanceRaw(stripDistSeparators(e.target.value))}
-          placeholder={fmtDist(5000)}
+          placeholder={t('converterDistPlaceholder')}
         />
         <div style={styles.quickButtons}>
           {DISTANCES.map(d => (
