@@ -3,10 +3,10 @@ import { useLanguage } from '../lib/i18n'
 import { parseTime, calcVDOT, calcMAS, speedToPace, formatPace, riegel } from '../lib/formulas'
 
 const DISTANCES = [
-  { label: '5K', meters: 5000 },
-  { label: '10K', meters: 10000 },
-  { label: 'HM', meters: 21097.5 },
-  { label: 'Marathon', meters: 42195 },
+  { labelKey: 'preset5k' as const, meters: 5000 },
+  { labelKey: 'preset10k' as const, meters: 10000 },
+  { labelKey: 'presetHM' as const, meters: 21097.5 },
+  { labelKey: 'presetMarathon' as const, meters: 42195 },
 ]
 
 function NorwegianSingles() {
@@ -64,11 +64,11 @@ function NorwegianSingles() {
         <div style={styles.quickButtons}>
           {DISTANCES.map(d => (
             <button
-              key={d.label}
+              key={d.labelKey}
               style={styles.quickBtn}
               onClick={() => setDistanceStr(String(d.meters))}
             >
-              {d.label}
+              {t(d.labelKey)}
             </button>
           ))}
         </div>

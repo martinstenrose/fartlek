@@ -14,6 +14,10 @@ const translations = {
     distance: 'Distance (meters)',
     raceTime: 'Race time',
     timePlaceholder: 'mm:ss or hh:mm:ss',
+    preset5k: '5K',
+    preset10k: '10K',
+    presetHM: 'HM',
+    presetMarathon: 'Marathon',
     // Norwegian Singles — metrics
     vdot: 'VDOT',
     mas: 'MAS',
@@ -83,6 +87,10 @@ const translations = {
     distance: 'Distans (meter)',
     raceTime: 'Lopptid',
     timePlaceholder: 'mm:ss eller hh:mm:ss',
+    preset5k: '5 km',
+    preset10k: '10 km',
+    presetHM: 'Halvmaraton',
+    presetMarathon: 'Maraton',
     // Norwegian Singles — metrics
     vdot: 'VDOT',
     mas: 'MAS',
