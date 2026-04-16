@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { LanguageProvider, useLanguage } from './lib/i18n'
 import NorwegianSingles from './components/NorwegianSingles'
 import Converter from './components/Converter'
+import HRZones from './components/HRZones'
 
 type Theme = 'light' | 'dark' | 'system'
 
@@ -22,7 +23,7 @@ function resolveTheme(theme: Theme): 'light' | 'dark' {
 
 function AppContent() {
   const { lang, setLang, t } = useLanguage()
-  const [tab, setTab] = useState<'singles' | 'converter'>('singles')
+  const [tab, setTab] = useState<'singles' | 'converter' | 'hrzones'>('singles')
   const [theme, setThemeState] = useState<Theme>(() => {
     return (localStorage.getItem('theme') as Theme) || 'system'
   })
@@ -79,10 +80,18 @@ function AppContent() {
         >
           {t('tabConverter')}
         </button>
+        <button
+          style={{ ...styles.tab, ...(tab === 'hrzones' ? styles.tabActive : {}) }}
+          onClick={() => setTab('hrzones')}
+        >
+          {t('tabHRZones')}
+        </button>
       </div>
 
       <main style={styles.main}>
-        {tab === 'singles' ? <NorwegianSingles /> : <Converter />}
+        {tab === 'singles' && <NorwegianSingles />}
+        {tab === 'converter' && <Converter />}
+        {tab === 'hrzones' && <HRZones />}
       </main>
     </>
   )
