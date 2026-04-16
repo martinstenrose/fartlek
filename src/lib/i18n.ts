@@ -22,6 +22,7 @@ const translations = {
     vdot: 'VDOT',
     mas: 'MAS',
     easyPace: 'Easy pace',
+    thresholdPace: 'Threshold pace',
     kmh: 'km/h',
     minKm: 'min/km',
     // Norwegian Singles — zones
@@ -36,9 +37,9 @@ const translations = {
     vo2maxIntervals: 'VO₂max intervals',
     vo2maxDesc: 'Near maximal oxygen uptake',
     // Norwegian Singles — workouts
-    intervalWorkouts: 'Interval workouts',
-    timeBased: 'Time-based',
-    distanceBased: 'Distance-based',
+    intervalWorkouts: 'Workouts',
+    timeBased: 'Time-based threshold intervals',
+    distanceBased: 'Distance-based threshold intervals',
     workout: 'Workout',
     structure: 'Structure',
     targetPace: 'Target pace',
@@ -60,8 +61,8 @@ const translations = {
     aboutItem3: 'Keep threshold sessions below LT2',
     aboutItem4: 'Keep easy runs very easy (max 65% of MAS)',
     restTitle: 'About resting',
-    restItem1: 'Keep rest periods short to maintain lactate state.',
-    restItem2: 'Rest can be standing, walking, or easy jogging.',
+    restItem1: 'Keep rest periods short to maintain lactate state',
+    restItem2: 'Rest can be standing, walking, or easy jogging',
     // Norwegian Singles — errors
     errorTooFast: 'The time seems unrealistically fast for the given distance. Double-check your distance and time.',
     hintEmpty: 'Enter a distance and race time above to calculate VDOT and training zones.',
@@ -98,6 +99,7 @@ const translations = {
     vdot: 'VDOT',
     mas: 'MAS',
     easyPace: 'Lätt tempo',
+    thresholdPace: 'Tröskeltempo',
     kmh: 'km/h',
     minKm: 'min/km',
     // Norwegian Singles — zones
@@ -112,9 +114,9 @@ const translations = {
     vo2maxIntervals: 'VO₂max-intervaller',
     vo2maxDesc: 'Nära maximal syreupptagning',
     // Norwegian Singles — workouts
-    intervalWorkouts: 'Intervallpass',
-    timeBased: 'Tidsbaserade',
-    distanceBased: 'Distansbaserade',
+    intervalWorkouts: 'Träningspass',
+    timeBased: 'Tidsbaserade tröskelintervaller',
+    distanceBased: 'Distansbaserade tröskelintervaller',
     workout: 'Pass',
     structure: 'Struktur',
     targetPace: 'Måltempo',
@@ -136,8 +138,8 @@ const translations = {
     aboutItem3: 'Håll tröskelpassen under LT2',
     aboutItem4: 'Låt de lätta passen vara väldigt lätta (max 65 % av MAS)',
     restTitle: 'Om vila',
-    restItem1: 'Håll viloperioderna korta för att bibehålla laktatnivån.',
-    restItem2: 'Vila kan vara stående, gående eller lätt joggning.',
+    restItem1: 'Håll viloperioderna korta för att bibehålla laktatnivån',
+    restItem2: 'Vila kan vara stående, gående eller lätt joggning',
     // Norwegian Singles — errors
     errorTooFast: 'Tiden verkar orimligt snabb för den angivna distansen. Dubbelkolla att distans och tid stämmer.',
     hintEmpty: 'Ange distans och lopptid ovan för att beräkna VDOT och träningszoner.',

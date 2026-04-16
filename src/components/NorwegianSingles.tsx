@@ -28,6 +28,7 @@ function NorwegianSingles() {
 
     const mas = calcMAS(vdot)
     const easyPace = speedToPace(mas * 0.65)
+    const thresholdPace = speedToPace(mas * 0.875)
 
     const zones = [
       { key: 'easy', low: 0.60, high: 0.65, color: 'var(--zone-easy)' },
@@ -47,7 +48,7 @@ function NorwegianSingles() {
     const paceHM = formatPace(tHM / 21.0975)
     const pace30k = formatPace(t30k / 30)
 
-    return { vdot, mas, easyPace, zones, pace15k, paceHM, pace30k }
+    return { vdot, mas, easyPace, thresholdPace, zones, pace15k, paceHM, pace30k }
   }, [distanceRaw, timeStr])
 
   const hasInput = distanceRaw !== '' || timeStr !== ''
@@ -104,8 +105,8 @@ function NorwegianSingles() {
           {/* Key metrics */}
           <div style={styles.metricsGrid}>
             <MetricCard label={t('vdot')} value={fmtNum(result.vdot, 1)} />
-            <MetricCard label={`${t('mas')} (${t('kmh')})`} value={fmtNum(result.mas, 1)} />
-            <MetricCard label={`${t('easyPace')} (${t('minKm')})`} value={formatPace(result.easyPace)} />
+            <MetricCard label={`${t('thresholdPace')} (${t('minKm')})`} value={formatPace(result.thresholdPace)} />
+            <MetricCard label={`${t('easyPace')} (65% MAS)`} value={formatPace(result.easyPace)} />
           </div>
 
           {/* Training zones */}
@@ -196,18 +197,27 @@ function WorkoutTable({ rows }: { rows: { name: string; structure: string; pace:
   const { t } = useLanguage()
   return (
     <div style={styles.table}>
-      <div style={styles.tableHeader}>
+      <div className="workout-header">
         <span style={{ flex: 2 }}>{t('workout')}</span>
         <span style={{ flex: 2 }}>{t('structure')}</span>
         <span style={{ flex: 2 }}>{t('targetPace')}</span>
         <span style={{ flex: 1, textAlign: 'right' }}>{t('recovery')}</span>
       </div>
       {rows.map(r => (
-        <div key={r.name} style={styles.tableRow}>
-          <span style={{ flex: 2 }}>{r.name}</span>
-          <span className="mono" style={{ flex: 2 }}>{r.structure}</span>
-          <span className="mono" style={{ flex: 2 }}>{r.pace}</span>
-          <span style={{ flex: 1, textAlign: 'right' }}>{r.recovery}</span>
+        <div key={r.name} className="workout-row">
+          <span className="workout-col-name" style={{ flex: 2 }}>{r.name}</span>
+          <span className="mono" style={{ flex: 2 }}>
+            <span className="workout-col-label">{t('structure')}: </span>
+            {r.structure}
+          </span>
+          <span className="mono" style={{ flex: 2 }}>
+            <span className="workout-col-label">{t('targetPace')}: </span>
+            {r.pace}
+          </span>
+          <span style={{ flex: 1, textAlign: 'right' }}>
+            <span className="workout-col-label">{t('recovery')}: </span>
+            {r.recovery}
+          </span>
         </div>
       ))}
     </div>
