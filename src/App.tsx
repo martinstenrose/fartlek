@@ -51,7 +51,7 @@ function AppContent() {
   }
 
   return (
-    <>
+    <div style={styles.root}>
       <div style={styles.toolbar}>
         <div style={styles.toolbarTitle}>{t('appTitle')}</div>
         <div style={styles.toolbarActions}>
@@ -106,7 +106,7 @@ function AppContent() {
           }}
         />
       </footer>
-    </>
+    </div>
   )
 }
 
@@ -121,6 +121,11 @@ function App() {
 export default App
 
 const styles: Record<string, React.CSSProperties> = {
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+  },
   toolbar: {
     position: 'sticky',
     top: 0,
@@ -183,9 +188,12 @@ const styles: Record<string, React.CSSProperties> = {
     borderColor: 'var(--accent)',
   },
   main: {
+    flex: 1,
     maxWidth: '640px',
+    width: '100%',
     margin: '1rem auto',
     padding: '0 1.25rem',
+    boxSizing: 'border-box',
   },
   footer: {
     display: 'flex',
