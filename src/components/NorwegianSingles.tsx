@@ -197,18 +197,27 @@ function WorkoutTable({ rows }: { rows: { name: string; structure: string; pace:
   const { t } = useLanguage()
   return (
     <div style={styles.table}>
-      <div style={styles.tableHeader}>
+      <div className="workout-header">
         <span style={{ flex: 2 }}>{t('workout')}</span>
         <span style={{ flex: 2 }}>{t('structure')}</span>
         <span style={{ flex: 2 }}>{t('targetPace')}</span>
         <span style={{ flex: 1, textAlign: 'right' }}>{t('recovery')}</span>
       </div>
       {rows.map(r => (
-        <div key={r.name} style={styles.tableRow}>
-          <span style={{ flex: 2 }}>{r.name}</span>
-          <span className="mono" style={{ flex: 2 }}>{r.structure}</span>
-          <span className="mono" style={{ flex: 2 }}>{r.pace}</span>
-          <span style={{ flex: 1, textAlign: 'right' }}>{r.recovery}</span>
+        <div key={r.name} className="workout-row">
+          <span className="workout-col-name" style={{ flex: 2 }}>{r.name}</span>
+          <span className="mono" style={{ flex: 2 }}>
+            <span className="workout-col-label">{t('structure')}: </span>
+            {r.structure}
+          </span>
+          <span className="mono" style={{ flex: 2 }}>
+            <span className="workout-col-label">{t('targetPace')}: </span>
+            {r.pace}
+          </span>
+          <span style={{ flex: 1, textAlign: 'right' }}>
+            <span className="workout-col-label">{t('recovery')}: </span>
+            {r.recovery}
+          </span>
         </div>
       ))}
     </div>

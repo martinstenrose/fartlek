@@ -45,3 +45,54 @@ body {
 .mono {
   font-family: "JetBrains Mono", monospace;
 }
+
+.workout-header {
+  display: flex;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.workout-row {
+  display: flex;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.8rem;
+  align-items: center;
+}
+
+.workout-col-label {
+  display: none;
+}
+
+@media (max-width: 520px) {
+  .workout-header {
+    display: none;
+  }
+
+  .workout-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .workout-col-name {
+    font-weight: 600;
+    margin-bottom: 0.1rem;
+  }
+
+  .workout-col-label {
+    display: inline;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-right: 0.2rem;
+  }
+}
