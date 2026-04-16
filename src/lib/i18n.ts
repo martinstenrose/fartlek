@@ -10,6 +10,20 @@ const translations = {
     // Tabs
     tabNorwegianSingles: 'Norwegian Singles',
     tabConverter: 'Converter',
+    tabHRZones: 'HR Zones',
+    // HR Zones
+    lthrLabel: 'Threshold heart rate (LTHR)',
+    hrHintEmpty: 'Enter your threshold heart rate above to see your training zones.',
+    z1Name: 'Recovery',
+    z2Name: 'Aerobic base',
+    z3Name: 'Tempo',
+    z4Name: 'Threshold',
+    z5Name: 'VO₂max',
+    hrZonePct: '% LTHR',
+    hrZoneBpm: 'bpm',
+    hrHowToTitle: 'How to find your threshold heart rate',
+    hrHowToText: 'Run as hard as you can for 30 minutes, alone and not in a race. Take the average heart rate during the last 20 minutes — that is a good estimate of your threshold heart rate.',
+    hrSource: 'Zones based on Joe Friel\'s system (TrainingPeaks)',
     // Norwegian Singles — inputs
     distance: 'Distance (meters)',
     raceTime: 'Race time',
@@ -86,6 +100,20 @@ const translations = {
     // Tabs
     tabNorwegianSingles: 'Norska singlar',
     tabConverter: 'Omvandlare',
+    tabHRZones: 'Pulszoner',
+    // HR Zones
+    lthrLabel: 'Tröskelpuls (LTHR)',
+    hrHintEmpty: 'Ange din tröskelpuls ovan för att se dina träningszoner.',
+    z1Name: 'Återhämtning',
+    z2Name: 'Aerob bas',
+    z3Name: 'Tempo',
+    z4Name: 'Tröskel',
+    z5Name: 'VO₂max',
+    hrZonePct: '% LTHR',
+    hrZoneBpm: 'bpm',
+    hrHowToTitle: 'Hur du hittar din tröskelpuls',
+    hrHowToText: 'Spring så hårt du kan i 30 minuter, ensam och inte i tävling. Ta snittpulsen under de sista 20 minuterna – det är en god uppskattning av din tröskelpuls.',
+    hrSource: 'Zoner baserade på Joe Friels system (TrainingPeaks)',
     // Norwegian Singles — inputs
     distance: 'Distans (meter)',
     raceTime: 'Lopptid',
