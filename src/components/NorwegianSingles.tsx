@@ -106,7 +106,7 @@ function NorwegianSingles() {
           <div style={styles.metricsGrid}>
             <MetricCard label={t('vdot')} value={fmtNum(result.vdot, 1)} />
             <MetricCard label={`${t('thresholdPace')} (${t('minKm')})`} value={formatPace(result.thresholdPace)} />
-            <MetricCard label={`${t('easyPace')} (${t('minKm')})`} value={formatPace(result.easyPace)} />
+            <MetricCard label={`${t('easyPace')} (65% MAS)`} value={formatPace(result.easyPace)} />
           </div>
 
           {/* Training zones */}
