@@ -28,6 +28,7 @@ function NorwegianSingles() {
 
     const mas = calcMAS(vdot)
     const easyPace = speedToPace(mas * 0.65)
+    const thresholdPace = speedToPace(mas * 0.875)
 
     const zones = [
       { key: 'easy', low: 0.60, high: 0.65, color: 'var(--zone-easy)' },
@@ -47,7 +48,7 @@ function NorwegianSingles() {
     const paceHM = formatPace(tHM / 21.0975)
     const pace30k = formatPace(t30k / 30)
 
-    return { vdot, mas, easyPace, zones, pace15k, paceHM, pace30k }
+    return { vdot, mas, easyPace, thresholdPace, zones, pace15k, paceHM, pace30k }
   }, [distanceRaw, timeStr])
 
   const hasInput = distanceRaw !== '' || timeStr !== ''
@@ -104,7 +105,7 @@ function NorwegianSingles() {
           {/* Key metrics */}
           <div style={styles.metricsGrid}>
             <MetricCard label={t('vdot')} value={fmtNum(result.vdot, 1)} />
-            <MetricCard label={`${t('mas')} (${t('kmh')})`} value={fmtNum(result.mas, 1)} />
+            <MetricCard label={`${t('thresholdPace')} (${t('minKm')})`} value={formatPace(result.thresholdPace)} />
             <MetricCard label={`${t('easyPace')} (${t('minKm')})`} value={formatPace(result.easyPace)} />
           </div>
 

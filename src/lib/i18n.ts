@@ -22,6 +22,7 @@ const translations = {
     vdot: 'VDOT',
     mas: 'MAS',
     easyPace: 'Easy pace',
+    thresholdPace: 'Threshold pace',
     kmh: 'km/h',
     minKm: 'min/km',
     // Norwegian Singles — zones
@@ -98,6 +99,7 @@ const translations = {
     vdot: 'VDOT',
     mas: 'MAS',
     easyPace: 'Lätt tempo',
+    thresholdPace: 'Tröskeltempo',
     kmh: 'km/h',
     minKm: 'min/km',
     // Norwegian Singles — zones
