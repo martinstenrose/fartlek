@@ -152,9 +152,9 @@ function NorwegianSingles() {
             <h4 style={styles.subTitle}>{t('distanceBased')}</h4>
             <WorkoutTable
               rows={[
-                { name: t('reps1k'), structure: '8–12 × 1K', pace: result.pace15k, paceLabel: t('pace15k'), recovery: t('rest60s') },
-                { name: t('reps2k'), structure: '4–6 × 2K', pace: result.paceHM, paceLabel: t('paceHM'), recovery: t('rest60s') },
-                { name: t('reps3k'), structure: '3 × 3K', pace: result.pace30k, paceLabel: t('pace30k'), recovery: t('rest60s') },
+                { name: t('reps1k'), structure: t('structure1k'), pace: result.pace15k, paceLabel: t('pace15k'), recovery: t('rest60s') },
+                { name: t('reps2k'), structure: t('structure2k'), pace: result.paceHM, paceLabel: t('paceHM'), recovery: t('rest60s') },
+                { name: t('reps3k'), structure: t('structure3k'), pace: result.pace30k, paceLabel: t('pace30k'), recovery: t('rest60s') },
               ]}
             />
           </div>
