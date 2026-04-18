@@ -70,7 +70,7 @@ const translations = {
     reps3k: '3K reps',
     rest60s: '60s rest',
     pace15k: '15K pace',
-    paceHM: 'HM pace',
+    paceHM: 'Half Marathon pace',
     pace30k: '30K pace',
     // Norwegian Singles — info box
     aboutTitle: 'About Norwegian Singles',
@@ -165,7 +165,7 @@ const translations = {
     reps3k: '3K-rep',
     rest60s: '60 s vila',
     pace15k: '15K-tempo',
-    paceHM: 'HM-tempo',
+    paceHM: 'Halvmaraton-tempo',
     pace30k: '30K-tempo',
     // Norwegian Singles — info box
     aboutTitle: 'Om norska singlar',

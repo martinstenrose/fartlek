@@ -143,18 +143,18 @@ function NorwegianSingles() {
             <h4 style={styles.subTitle}>{t('timeBased')}</h4>
             <WorkoutTable
               rows={[
-                { name: t('shortIntervals'), structure: '8–12 × 3–4 min', pace: `${result.pace15k} (${t('pace15k')})`, recovery: t('rest60s') },
-                { name: t('mediumIntervals'), structure: '4–6 × 6–8 min', pace: `${result.paceHM} (${t('paceHM')})`, recovery: t('rest60s') },
-                { name: t('longIntervals'), structure: '3 × 10–12 min', pace: `${result.pace30k} (${t('pace30k')})`, recovery: t('rest60s') },
+                { name: t('shortIntervals'), structure: '8–12 × 3–4 min', pace: result.pace15k, paceLabel: t('pace15k'), recovery: t('rest60s') },
+                { name: t('mediumIntervals'), structure: '4–6 × 6–8 min', pace: result.paceHM, paceLabel: t('paceHM'), recovery: t('rest60s') },
+                { name: t('longIntervals'), structure: '3 × 10–12 min', pace: result.pace30k, paceLabel: t('pace30k'), recovery: t('rest60s') },
               ]}
             />
 
             <h4 style={styles.subTitle}>{t('distanceBased')}</h4>
             <WorkoutTable
               rows={[
-                { name: t('reps1k'), structure: '8–12 × 1K', pace: `${result.pace15k} (${t('pace15k')})`, recovery: t('rest60s') },
-                { name: t('reps2k'), structure: '4–6 × 2K', pace: `${result.paceHM} (${t('paceHM')})`, recovery: t('rest60s') },
-                { name: t('reps3k'), structure: '3 × 3K', pace: `${result.pace30k} (${t('pace30k')})`, recovery: t('rest60s') },
+                { name: t('reps1k'), structure: '8–12 × 1K', pace: result.pace15k, paceLabel: t('pace15k'), recovery: t('rest60s') },
+                { name: t('reps2k'), structure: '4–6 × 2K', pace: result.paceHM, paceLabel: t('paceHM'), recovery: t('rest60s') },
+                { name: t('reps3k'), structure: '3 × 3K', pace: result.pace30k, paceLabel: t('pace30k'), recovery: t('rest60s') },
               ]}
             />
           </div>
@@ -193,7 +193,7 @@ function MetricCard({ label, value }: { label: string; value: string }) {
   )
 }
 
-function WorkoutTable({ rows }: { rows: { name: string; structure: string; pace: string; recovery: string }[] }) {
+function WorkoutTable({ rows }: { rows: { name: string; structure: string; pace: string; paceLabel: string; recovery: string }[] }) {
   const { t } = useLanguage()
   return (
     <div style={styles.table}>
@@ -210,9 +210,10 @@ function WorkoutTable({ rows }: { rows: { name: string; structure: string; pace:
             <span className="workout-col-label">{t('structure')}: </span>
             {r.structure}
           </span>
-          <span className="mono" style={{ flex: 2 }}>
+          <span style={{ flex: 2, display: 'flex', flexDirection: 'column' }}>
             <span className="workout-col-label">{t('targetPace')}: </span>
-            {r.pace}
+            <span className="mono">{r.pace}</span>
+            <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>{r.paceLabel}</span>
           </span>
           <span style={{ flex: 1, textAlign: 'right' }}>
             <span className="workout-col-label">{t('recovery')}: </span>
