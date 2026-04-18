@@ -4,6 +4,21 @@ import { parseTime, formatTime, formatPace, riegel, speedToPace, paceToSpeed } f
 
 const RIEGEL_DISTANCES = [400, 800, 1000, 3000, 5000, 10000, 21097.5, 30000, 42195]
 
+const CONVERTER_PRESET_ROWS = [
+  [
+    { labelKey: 'preset100m' as const, meters: 100 },
+    { labelKey: 'preset200m' as const, meters: 200 },
+    { labelKey: 'preset400m' as const, meters: 400 },
+    { labelKey: 'preset800m' as const, meters: 800 },
+  ],
+  [
+    { labelKey: 'preset5k' as const, meters: 5000 },
+    { labelKey: 'preset10k' as const, meters: 10000 },
+    { labelKey: 'presetHM' as const, meters: 21097.5 },
+    { labelKey: 'presetMarathon' as const, meters: 42195 },
+  ],
+]
+
 function stripDistSeparators(v: string) {
   return v.replace(/[\s,]/g, '')
 }
@@ -76,6 +91,19 @@ function RiegelCard({ color }: { color: string }) {
           placeholder={t('timePlaceholder')}
         />
       </div>
+      {CONVERTER_PRESET_ROWS.map((row, i) => (
+        <div key={i} style={styles.quickButtons}>
+          {row.map(d => (
+            <button
+              key={d.labelKey}
+              style={styles.quickBtn}
+              onClick={() => setDistanceRaw(String(d.meters))}
+            >
+              {t(d.labelKey)}
+            </button>
+          ))}
+        </div>
+      ))}
       {equivalents && (
         <div style={styles.table}>
           <div style={styles.tableHeader}>
@@ -321,6 +349,23 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: '1.1rem',
     fontWeight: 600,
     color: 'var(--accent)',
+  },
+  quickButtons: {
+    display: 'flex',
+    gap: '0.5rem',
+    marginBottom: '0.5rem',
+  },
+  quickBtn: {
+    flex: 1,
+    padding: '0.4rem',
+    border: '1px solid var(--border)',
+    borderRadius: '6px',
+    background: 'var(--bg-surface)',
+    color: 'var(--text)',
+    cursor: 'pointer',
+    fontSize: '0.8rem',
+    fontFamily: 'inherit',
+    fontWeight: 500,
   },
   table: {
     border: '1px solid var(--border)',
