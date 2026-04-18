@@ -75,16 +75,16 @@ function AppContent() {
           {t('tabNorwegianSingles')}
         </button>
         <button
-          style={{ ...styles.tab, ...(tab === 'converter' ? styles.tabActive : {}) }}
-          onClick={() => setTab('converter')}
-        >
-          {t('tabConverter')}
-        </button>
-        <button
           style={{ ...styles.tab, ...(tab === 'hrzones' ? styles.tabActive : {}) }}
           onClick={() => setTab('hrzones')}
         >
           {t('tabHRZones')}
+        </button>
+        <button
+          style={{ ...styles.tab, ...(tab === 'converter' ? styles.tabActive : {}) }}
+          onClick={() => setTab('converter')}
+        >
+          {t('tabConverter')}
         </button>
       </div>
 
@@ -165,6 +165,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
   tabs: {
     display: 'flex',
+    flexWrap: 'wrap',
     maxWidth: '640px',
     margin: '0 auto',
     padding: '0.75rem 1.25rem 0',
@@ -181,6 +182,7 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: '0.85rem',
     fontFamily: 'inherit',
     fontWeight: 500,
+    whiteSpace: 'nowrap',
   },
   tabActive: {
     background: 'var(--accent)',
