@@ -2,7 +2,7 @@
 
 ## Overview
 
-A static web app with running tools in two tabs: a Norwegian Singles training zone calculator and a pace/distance converter with Riegel race equivalents.
+A static web app with running tools in three tabs: a Norwegian Singles training zone calculator, a heart rate zone calculator, and a pace/distance converter with Riegel race equivalents.
 
 Repo: `martinstenrose/fartlek`
 FQDN: `fartlek.stenrose.se`
@@ -10,10 +10,9 @@ License: GPL v3
 
 ## Tech Stack
 
-- **React 19** with **Vite 6** (TypeScript, strict mode)
+- **React** + **Vite** (TypeScript, strict mode) — see `package.json` for pinned versions
 - Inline styles — no component libraries, no CSS frameworks
-- **nginx 1.27-alpine** as production server (multi-stage Docker build)
-- **Node 22-alpine** as build stage
+- **nginx** as production server (multi-stage Docker build) — see `Dockerfile` for pinned versions
 - **GitHub Actions** → `ghcr.io/martinstenrose/fartlek`
 - **Dependabot** for npm, Docker, and GitHub Actions updates
 - No backend, no API, no database — 100% client-side
@@ -96,7 +95,35 @@ Info box "About Norwegian Singles" — bullet list, no emojis:
 - VDOT > 85: show error — "The time seems unrealistically fast for the given distance. Double-check your distance and time."
 - Empty inputs: show hint — "Enter a distance and race time above to calculate VDOT and training zones."
 
-## Tab 2: Converter
+## Tab 2: HR Zones
+
+### Input
+
+Lactate Threshold Heart Rate (LTHR) in bpm — integer, numeric input.
+
+### Output
+
+Five training zones based on Joe Friel's system, displayed as a table with zone label, %LTHR range, and BPM range:
+
+| Zone | %LTHR | Description |
+|------|-------|-------------|
+| Z1 | < 85% | Recovery |
+| Z2 | 85–89% | Aerobic base |
+| Z3 | 90–94% | Tempo |
+| Z4 | 95–99% | Threshold |
+| Z5 | ≥ 100% | VO₂max / Anaerobic |
+
+BPM ranges are calculated as `round(lthr × pct)`.
+
+### Error Handling
+
+- Empty input: show hint — "Enter your lactate threshold heart rate above to calculate training zones."
+
+### Info Box
+
+Explain LTHR estimation methodology (20-minute all-out TT, use average HR as LTHR estimate). Source: Joe Friel, *The Triathlete's Training Bible*.
+
+## Tab 3: Converter
 
 Six mini calculators:
 
@@ -139,7 +166,8 @@ fartlek/
 │   ├── main.tsx
 │   ├── components/
 │   │   ├── NorwegianSingles.tsx
-│   │   └── Converter.tsx
+│   │   ├── Converter.tsx
+│   │   └── HRZones.tsx
 │   ├── lib/
 │   │   ├── formulas.ts          # VDOT, Riegel, pace conversions — pure functions
 │   │   ├── formulas.test.ts
