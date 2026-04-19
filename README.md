@@ -1,19 +1,20 @@
 # Fartlek
 
-Running calculator with two tools: a Norwegian Singles training zone calculator (VDOT/MAS) and a pace/distance converter.
+Running calculator with three tools: a Norwegian Singles training zone calculator (VDOT/MAS), a heart rate zones calculator, and a pace/distance converter.
 
 Live at [fartlek.stenrose.se](https://fartlek.stenrose.se)
 
 ## Features
 
 - **Norwegian Singles** — enter a race result to get VDOT, MAS, easy pace, training zones, and interval workout suggestions
+- **HR Zones** — enter your LTHR to get five Joe Friel training zones with BPM ranges
 - **Converter** — six calculators: Riegel race equivalents, min/km ↔ km/h, pace, time, and distance
 - English and Swedish UI, auto-detected from browser language
 - Light, Dark, and System themes
 
 ## Tech
 
-React 19 + Vite 6 + TypeScript. No CSS framework — inline styles only. Served via nginx in a multi-stage Docker build.
+React + Vite + TypeScript. No CSS framework — inline styles only. Served via nginx in a multi-stage Docker build.
 
 ## Development
 
