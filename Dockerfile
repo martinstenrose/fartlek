@@ -1,4 +1,4 @@
-FROM node:25.9-alpine AS builder
+FROM node:26.1-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
